@@ -52,7 +52,7 @@ const variants = product?.variants.edges.map((e: any) => e.node) || [];
             <!-- Product Images -->
             <div class="space-y-4">
               {images.length > 0 && (
-                <div class="aspect-square overflow-hidden rounded-lg bg-black-light">
+                <div class="aspect-[3/4] overflow-hidden rounded-lg bg-black-light">
                   <img
                     src={images[0].url}
                     alt={images[0].altText || product.title}
