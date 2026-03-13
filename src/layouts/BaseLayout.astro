@@ -18,8 +18,8 @@ const {
 
 const canonicalUrl = new URL(Astro.url.pathname, 'https://penaltybox25.com');
 
-const shopifyDomain = process.env.SHOPIFY_STORE_DOMAIN || '';
-const shopifyToken = process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN || '';
+const shopifyDomain = import.meta.env.SHOPIFY_STORE_DOMAIN || '';
+const shopifyToken = import.meta.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN || '';
 ---
 
 <!doctype html>
