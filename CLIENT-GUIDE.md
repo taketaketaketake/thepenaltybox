@@ -102,8 +102,8 @@ If the site isn't updating after a Shopify product change (since product data is
 These are already set up. If you ever need to check or change them:
 1. Go to your site in Netlify → **Site settings** → **Environment variables**
 2. The two important ones:
-   - `SHOPIFY_STORE_DOMAIN` = `penalty-box-2.myshopify.com`
-   - `SHOPIFY_STOREFRONT_ACCESS_TOKEN` = your Storefront API token
+   - `SHOPIFY_STORE_DOMAIN` — your Shopify store domain
+   - `SHOPIFY_STOREFRONT_ACCESS_TOKEN` — your Storefront API token
 
 ---
 
