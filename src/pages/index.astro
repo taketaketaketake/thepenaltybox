@@ -1,6 +1,16 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
+import ProductCard from '../components/ProductCard.astro';
+import { getProducts } from '../lib/shopify';
+
+let featuredProducts: any[] = [];
+try {
+  const all = await getProducts();
+  featuredProducts = all.slice(0, 4);
+} catch {
+  // Shopify not connected — show placeholder
+}
 ---
 
 <BaseLayout title="Penalty Box | Darren McCarty">
@@ -39,30 +49,24 @@ import Hero from '../components/Hero.astro';
       <p class="text-gray-400 mt-3 text-lg">Rep the Penalty Box</p>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-4xl mx-auto">
-      <a href="/shop" class="group block">
-        <div class="aspect-square overflow-hidden rounded-lg bg-black-light border border-white/10 flex items-center justify-center">
-          <div class="text-center p-8">
-            <svg class="w-16 h-16 mx-auto text-gray-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-            </svg>
-            <p class="text-gray-400 text-sm">Products coming soon</p>
-            <p class="text-white font-semibold mt-2 group-hover:text-redwings transition-colors">Browse Shop</p>
-          </div>
-        </div>
-      </a>
-      <a href="/shop" class="group block">
-        <div class="aspect-square overflow-hidden rounded-lg bg-black-light border border-white/10 flex items-center justify-center">
-          <div class="text-center p-8">
-            <svg class="w-16 h-16 mx-auto text-gray-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-            </svg>
-            <p class="text-gray-400 text-sm">Products coming soon</p>
-            <p class="text-white font-semibold mt-2 group-hover:text-redwings transition-colors">Browse Shop</p>
-          </div>
-        </div>
-      </a>
-    </div>
+    {featuredProducts.length > 0 ? (
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        {featuredProducts.map((product) => (
+          <ProductCard
+            handle={product.handle}
+            title={product.title}
+            price={product.priceRange.minVariantPrice.amount}
+            currencyCode={product.priceRange.minVariantPrice.currencyCode}
+            image={product.images.edges[0]?.node.url || ''}
+            imageAlt={product.images.edges[0]?.node.altText || product.title}
+          />
+        ))}
+      </div>
+    ) : (
+      <div class="text-center py-8">
+        <p class="text-gray-400">Products coming soon</p>
+      </div>
+    )}
 
     <div class="text-center mt-10">
       <a
