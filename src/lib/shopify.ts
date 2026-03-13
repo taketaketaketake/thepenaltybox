@@ -116,11 +116,13 @@ export interface ShopifyProduct {
 export async function getProducts(): Promise<ShopifyProduct[]> {
   const query = `
     ${PRODUCT_FRAGMENT}
-    query Products {
-      products(first: 20) {
-        edges {
-          node {
-            ...ProductFields
+    query CollectionProducts($handle: String!) {
+      collectionByHandle(handle: $handle) {
+        products(first: 20) {
+          edges {
+            node {
+              ...ProductFields
+            }
           }
         }
       }
@@ -128,10 +130,11 @@ export async function getProducts(): Promise<ShopifyProduct[]> {
   `;
 
   const data = await shopifyFetch<{
-    products: { edges: Array<{ node: ShopifyProduct }> };
-  }>(query);
+    collectionByHandle: { products: { edges: Array<{ node: ShopifyProduct }> } } | null;
+  }>(query, { handle: 'penalty-box-products' });
 
-  return data.products.edges.map((edge) => edge.node);
+  if (!data.collectionByHandle) return [];
+  return data.collectionByHandle.products.edges.map((edge) => edge.node);
 }
 
 export async function getProductByHandle(handle: string): Promise<ShopifyProduct | null> {
