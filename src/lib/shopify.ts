@@ -1,5 +1,5 @@
-const domain = import.meta.env.SHOPIFY_STORE_DOMAIN;
-const storefrontAccessToken = import.meta.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN;
+const domain = process.env.SHOPIFY_STORE_DOMAIN || '';
+const storefrontAccessToken = process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN || '';
 
 interface ShopifyResponse<T> {
   data: T;
