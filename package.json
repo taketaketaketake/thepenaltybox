@@ -8,11 +8,12 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "start": "node ./dist/server/entry.mjs",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/netlify": "^7.0.2",
+    "@astrojs/node": "^10.0.1",
     "@astrojs/react": "^5.0.0",
     "@nanostores/react": "^0.8.0",
     "astro": "^6.0.4",
