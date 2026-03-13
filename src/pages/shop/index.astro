@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { getProducts } from '../../lib/shopify';
+
+let products: any[] = [];
+let error = '';
+
+try {
+  products = await getProducts();
+} catch (e) {
+  error = 'Products will be available once the shop is connected.';
+}
+---
+
+<BaseLayout title="Shop | Penalty Box">
+  <div class="pt-20 sm:pt-24">
+    <!-- Header -->
+    <section class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center">
+      <h1 class="text-4xl sm:text-5xl font-black uppercase tracking-tight mb-4">Shop</h1>
+      <p class="text-gray-400 text-lg max-w-2xl mx-auto">
+        Official Penalty Box merch. Rep Darren McCarty and the Winged Wheel.
+      </p>
+    </section>
+
+    <!-- Product Grid -->
+    <section class="pb-16 sm:pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      {error ? (
+        <div class="text-center py-16">
+          <svg class="w-16 h-16 mx-auto text-gray-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+          </svg>
+          <p class="text-gray-400">{error}</p>
+        </div>
+      ) : products.length === 0 ? (
+        <div class="text-center py-16">
+          <svg class="w-16 h-16 mx-auto text-gray-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+          </svg>
+          <p class="text-gray-400">No products available yet. Check back soon!</p>
+        </div>
+      ) : (
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {products.map((product) => (
+            <ProductCard
+              handle={product.handle}
+              title={product.title}
+              price={product.priceRange.minVariantPrice.amount}
+              currencyCode={product.priceRange.minVariantPrice.currencyCode}
+              image={product.images.edges[0]?.node.url || ''}
+              imageAlt={product.images.edges[0]?.node.altText || product.title}
+            />
+          ))}
+        </div>
+      )}
+    </section>
+  </div>
+</BaseLayout>

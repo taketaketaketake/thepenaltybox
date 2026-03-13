@@ -1,0 +1,31 @@
+---
+interface Props {
+  handle: string;
+  title: string;
+  price: string;
+  currencyCode: string;
+  image: string;
+  imageAlt: string;
+}
+
+const { handle, title, price, currencyCode, image, imageAlt } = Astro.props;
+
+const formattedPrice = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: currencyCode,
+}).format(parseFloat(price));
+---
+
+<a href={`/shop/${handle}`} class="group block">
+  <div class="aspect-square overflow-hidden rounded-lg bg-black-light">
+    <img
+      src={image}
+      alt={imageAlt}
+      class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+    />
+  </div>
+  <div class="mt-4">
+    <h3 class="text-lg font-semibold group-hover:text-redwings transition-colors">{title}</h3>
+    <p class="text-gray-400 mt-1">{formattedPrice}</p>
+  </div>
+</a>

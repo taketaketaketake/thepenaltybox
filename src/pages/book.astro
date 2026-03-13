@@ -1,0 +1,78 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import BookingForm from '../components/BookingForm.tsx';
+
+const appearanceTypes = [
+  {
+    title: 'Speaking Engagements',
+    description: 'Darren shares stories from his career, the legendary rivalries, championship runs, and lessons learned on and off the ice. Perfect for corporate events, fundraisers, and motivational gatherings.',
+    icon: '🎤',
+  },
+  {
+    title: 'Autograph Signings',
+    description: 'Meet Darren McCarty in person. Get your jerseys, photos, pucks, and memorabilia signed by a 4x Stanley Cup Champion.',
+    icon: '✍️',
+  },
+  {
+    title: 'Corporate Events',
+    description: 'Bring a champion to your company event. Darren connects with audiences through authentic storytelling, team-building, and VIP meet-and-greets.',
+    icon: '🏢',
+  },
+  {
+    title: 'Private Appearances',
+    description: 'Birthday parties, private dinners, charity events, or any special occasion. Make it unforgettable with a personal appearance from Mac.',
+    icon: '⭐',
+  },
+];
+---
+
+<BaseLayout title="Book Darren | Penalty Box">
+  <!-- Hero -->
+  <Hero
+    image="/images/darren/Darren-Shoot-008.JPG"
+    imageAlt="Darren McCarty"
+  >
+    <h1 class="text-4xl sm:text-5xl md:text-6xl font-black uppercase tracking-tight mb-4">
+      Book Darren
+    </h1>
+    <p class="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto">
+      Available for speaking engagements, autograph signings, corporate events, and private appearances.
+    </p>
+  </Hero>
+
+  <!-- Appearance Types -->
+  <section class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <h2 class="text-3xl sm:text-4xl font-bold uppercase tracking-tight text-center mb-12">
+      Appearance Types
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {appearanceTypes.map((type) => (
+        <div class="bg-black-light border border-white/10 rounded-lg p-8">
+          <span class="text-3xl mb-4 block">{type.icon}</span>
+          <h3 class="text-xl font-bold mb-3">{type.title}</h3>
+          <p class="text-gray-400 leading-relaxed">{type.description}</p>
+        </div>
+      ))}
+    </div>
+    <div class="text-center mt-8">
+      <p class="text-gray-400">
+        Pricing varies by event type, location, and duration. <br class="hidden sm:block" />
+        Submit an inquiry below for a custom quote.
+      </p>
+    </div>
+  </section>
+
+  <!-- Booking Form -->
+  <section class="py-16 sm:py-24 bg-black-light">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl sm:text-4xl font-bold uppercase tracking-tight text-center mb-4">
+        Send an Inquiry
+      </h2>
+      <p class="text-gray-400 text-center mb-12 max-w-xl mx-auto">
+        Fill out the form below and we'll get back to you with availability and pricing.
+      </p>
+      <BookingForm client:load />
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,135 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+---
+
+<BaseLayout title="Penalty Box | Darren McCarty">
+  <!-- Hero -->
+  <Hero
+    image="/images/darren/Darren-Shoot-010.JPG"
+    imageAlt="Darren McCarty — 4x Stanley Cup Champion"
+    fullHeight
+  >
+    <img
+      src="/images/logo.png"
+      alt="Penalty Box"
+      class="w-32 sm:w-40 mx-auto mb-6"
+    />
+    <h1 class="text-4xl sm:text-5xl md:text-7xl font-black uppercase tracking-tight mb-4">
+      Darren McCarty
+    </h1>
+    <p class="text-lg sm:text-xl md:text-2xl text-gray-400 font-medium mb-8">
+      4x Stanley Cup Champion &bull; Detroit Red Wings
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a
+        href="/shop"
+        class="inline-block bg-redwings hover:bg-redwings-dark text-white font-bold py-3 px-8 rounded-lg text-lg transition-colors duration-200"
+      >
+        Shop Now
+      </a>
+      <a
+        href="/book"
+        class="inline-block border-2 border-white hover:bg-white hover:text-black text-white font-bold py-3 px-8 rounded-lg text-lg transition-colors duration-200"
+      >
+        Book Darren
+      </a>
+    </div>
+  </Hero>
+
+  <!-- Featured Merch -->
+  <section class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl sm:text-4xl font-bold uppercase tracking-tight">Official Merch</h2>
+      <p class="text-gray-400 mt-3 text-lg">Rep the Penalty Box</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-4xl mx-auto">
+      <a href="/shop" class="group block">
+        <div class="aspect-square overflow-hidden rounded-lg bg-black-light border border-white/10 flex items-center justify-center">
+          <div class="text-center p-8">
+            <svg class="w-16 h-16 mx-auto text-gray-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+            </svg>
+            <p class="text-gray-400 text-sm">Products coming soon</p>
+            <p class="text-white font-semibold mt-2 group-hover:text-redwings transition-colors">Browse Shop</p>
+          </div>
+        </div>
+      </a>
+      <a href="/shop" class="group block">
+        <div class="aspect-square overflow-hidden rounded-lg bg-black-light border border-white/10 flex items-center justify-center">
+          <div class="text-center p-8">
+            <svg class="w-16 h-16 mx-auto text-gray-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+            </svg>
+            <p class="text-gray-400 text-sm">Products coming soon</p>
+            <p class="text-white font-semibold mt-2 group-hover:text-redwings transition-colors">Browse Shop</p>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="text-center mt-10">
+      <a
+        href="/shop"
+        class="inline-block border-2 border-redwings text-redwings hover:bg-redwings hover:text-white font-bold py-3 px-8 rounded-lg transition-colors duration-200"
+      >
+        View All Products
+      </a>
+    </div>
+  </section>
+
+  <!-- About Teaser -->
+  <section class="py-16 sm:py-24 bg-black-light">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div>
+          <img
+            src="/images/darren/Darren-Shoot-005.JPG"
+            alt="Darren McCarty"
+            class="rounded-lg w-full"
+          />
+        </div>
+        <div>
+          <h2 class="text-3xl sm:text-4xl font-bold uppercase tracking-tight mb-6">
+            The Penalty Box
+          </h2>
+          <p class="text-gray-400 text-lg leading-relaxed mb-4">
+            Four Stanley Cups. Countless unforgettable moments. One of the most
+            beloved players to ever wear the Winged Wheel.
+          </p>
+          <p class="text-gray-400 text-lg leading-relaxed mb-8">
+            Darren McCarty didn't just play hockey &mdash; he lived it. From the
+            legendary Fight Night at the Joe to clinching championships, Mac
+            brought grit, heart, and authenticity to everything he did on the ice.
+          </p>
+          <a
+            href="/about"
+            class="inline-block border-2 border-white hover:bg-white hover:text-black text-white font-bold py-3 px-8 rounded-lg transition-colors duration-200"
+          >
+            Read More
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Book CTA -->
+  <section class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-3xl sm:text-4xl font-bold uppercase tracking-tight mb-6">
+        Book Darren for Your Event
+      </h2>
+      <p class="text-gray-400 text-lg mb-8 max-w-2xl mx-auto">
+        Available for speaking engagements, autograph signings, corporate events,
+        and private appearances.
+      </p>
+      <a
+        href="/book"
+        class="inline-block bg-redwings hover:bg-redwings-dark text-white font-bold py-3 px-8 rounded-lg text-lg transition-colors duration-200"
+      >
+        Book Now
+      </a>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,154 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import PhotoGallery from '../components/PhotoGallery.astro';
+
+const galleryImages = [
+  { src: '/images/darren/Darren-Shoot-010.JPG', alt: 'Darren McCarty — intimidation stance' },
+  { src: '/images/darren/Darren-Shoot-005.JPG', alt: 'Darren McCarty — portrait' },
+  { src: '/images/darren/Darren-Shoot-008.JPG', alt: 'Darren McCarty — studio shot' },
+  { src: '/images/darren/Darren-Shoot-009.JPG', alt: 'Darren McCarty — action pose' },
+];
+---
+
+<BaseLayout title="About | Penalty Box">
+  <!-- Hero -->
+  <Hero
+    image="/images/darren/Darren-Shoot-009.JPG"
+    imageAlt="Darren McCarty"
+  >
+    <h1 class="text-4xl sm:text-5xl md:text-6xl font-black uppercase tracking-tight mb-4">
+      About Darren
+    </h1>
+  </Hero>
+
+  <!-- Bio -->
+  <section class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div class="md:col-span-2 space-y-6">
+          <h2 class="text-3xl font-bold uppercase tracking-tight">
+            4x Stanley Cup Champion
+          </h2>
+          <p class="text-gray-400 text-lg leading-relaxed">
+            Darren McCarty is one of the most beloved players in Detroit Red Wings history.
+            A four-time Stanley Cup champion (1997, 1998, 2002, 2008), McCarty was the
+            embodiment of toughness, passion, and heart during the Wings' dynasty era.
+          </p>
+          <p class="text-gray-400 text-lg leading-relaxed">
+            Drafted 46th overall in 1992, Mac quickly earned his place as a fan favorite.
+            He wasn't just an enforcer &mdash; he was a clutch performer when it mattered most.
+            His overtime goal in Game 4 of the 1997 Stanley Cup Finals against the
+            Philadelphia Flyers remains one of the most iconic moments in franchise history,
+            ending a 42-year championship drought.
+          </p>
+          <p class="text-gray-400 text-lg leading-relaxed">
+            March 26, 1997. Fight Night at the Joe. McCarty's fight with Claude Lemieux
+            became the defining moment of the greatest rivalry in hockey history &mdash;
+            Red Wings vs. Avalanche. That night cemented Mac's legacy as a player who
+            would do anything for his teammates.
+          </p>
+          <p class="text-gray-400 text-lg leading-relaxed">
+            Over 758 career NHL games, McCarty recorded 127 goals and 274 points,
+            along with 1,477 penalty minutes. But the numbers only tell part of the story.
+            Mac's impact was measured in moments, in loyalty, and in the way he made a
+            city fall in love with a hockey team all over again.
+          </p>
+        </div>
+
+        <div class="space-y-6">
+          <div class="bg-black-light border border-white/10 rounded-lg p-6">
+            <h3 class="text-lg font-bold mb-4 uppercase tracking-wider text-redwings">Career Highlights</h3>
+            <ul class="space-y-3 text-gray-400">
+              <li class="flex items-start gap-2">
+                <span class="text-redwings font-bold mt-0.5">&#x2022;</span>
+                <span>4x Stanley Cup Champion</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-redwings font-bold mt-0.5">&#x2022;</span>
+                <span>Game 4 OT Goal — 1997 Finals</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-redwings font-bold mt-0.5">&#x2022;</span>
+                <span>Fight Night at the Joe (1997)</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-redwings font-bold mt-0.5">&#x2022;</span>
+                <span>758 NHL Games</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-redwings font-bold mt-0.5">&#x2022;</span>
+                <span>127 Goals, 274 Points</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-redwings font-bold mt-0.5">&#x2022;</span>
+                <span>1,477 Penalty Minutes</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-black-light border border-white/10 rounded-lg p-6">
+            <h3 class="text-lg font-bold mb-4 uppercase tracking-wider text-redwings">Jersey Number</h3>
+            <p class="text-6xl font-black text-center">25</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Penalty Box Brand -->
+  <section class="py-16 sm:py-24 bg-black-light">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <img
+        src="/images/logo.png"
+        alt="Penalty Box"
+        class="w-24 mx-auto mb-6"
+      />
+      <h2 class="text-3xl sm:text-4xl font-bold uppercase tracking-tight mb-6">
+        The Penalty Box
+      </h2>
+      <p class="text-gray-400 text-lg leading-relaxed max-w-2xl mx-auto mb-4">
+        Penalty Box is Darren McCarty's personal brand &mdash; born from the place where
+        legends are made. The penalty box isn't just a spot on the ice. It's a badge of honor.
+        It means you showed up, you competed, and you weren't afraid to do whatever it took.
+      </p>
+      <p class="text-gray-400 text-lg leading-relaxed max-w-2xl mx-auto">
+        From official merch to live appearances, Penalty Box carries the same energy Mac
+        brought to every shift: authentic, unapologetic, and all heart.
+      </p>
+    </div>
+  </section>
+
+  <!-- Photo Gallery -->
+  <section class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl sm:text-4xl font-bold uppercase tracking-tight text-center mb-12">
+        Gallery
+      </h2>
+      <PhotoGallery images={galleryImages} />
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 sm:py-24 bg-black-light">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl sm:text-4xl font-bold uppercase tracking-tight mb-6">
+        Want Darren at Your Event?
+      </h2>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="/book"
+          class="inline-block bg-redwings hover:bg-redwings-dark text-white font-bold py-3 px-8 rounded-lg text-lg transition-colors duration-200"
+        >
+          Book Darren
+        </a>
+        <a
+          href="/shop"
+          class="inline-block border-2 border-white hover:bg-white hover:text-black text-white font-bold py-3 px-8 rounded-lg text-lg transition-colors duration-200"
+        >
+          Shop Merch
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

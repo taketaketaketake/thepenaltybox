@@ -1,0 +1,96 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AddToCart from '../../components/AddToCart.tsx';
+import { getProducts, getProductByHandle } from '../../lib/shopify';
+
+const { handle } = Astro.params;
+
+if (!handle) {
+  return Astro.redirect('/shop');
+}
+
+let product: any = null;
+let error = '';
+
+try {
+  product = await getProductByHandle(handle);
+} catch (e) {
+  error = 'Unable to load product.';
+}
+
+if (!product && !error) {
+  return Astro.redirect('/shop');
+}
+
+const images = product?.images.edges.map((e: any) => e.node) || [];
+const variants = product?.variants.edges.map((e: any) => e.node) || [];
+---
+
+<BaseLayout title={`${product?.title || 'Product'} | Penalty Box`}>
+  <div class="pt-20 sm:pt-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-16">
+      {error ? (
+        <div class="text-center py-16">
+          <p class="text-gray-400">{error}</p>
+          <a href="/shop" class="text-redwings hover:text-redwings-dark mt-4 inline-block">
+            &larr; Back to shop
+          </a>
+        </div>
+      ) : (
+        <>
+          <a
+            href="/shop"
+            class="inline-flex items-center text-gray-400 hover:text-white mb-8 transition-colors"
+          >
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+            Back to shop
+          </a>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <!-- Product Images -->
+            <div class="space-y-4">
+              {images.length > 0 && (
+                <div class="aspect-square overflow-hidden rounded-lg bg-black-light">
+                  <img
+                    src={images[0].url}
+                    alt={images[0].altText || product.title}
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+              )}
+              {images.length > 1 && (
+                <div class="grid grid-cols-4 gap-2">
+                  {images.slice(1).map((img: any) => (
+                    <div class="aspect-square overflow-hidden rounded-lg bg-black-light">
+                      <img
+                        src={img.url}
+                        alt={img.altText || product.title}
+                        class="w-full h-full object-cover"
+                      />
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <!-- Product Info -->
+            <div>
+              <h1 class="text-3xl sm:text-4xl font-bold mb-4">{product.title}</h1>
+
+              {product.descriptionHtml && (
+                <div
+                  class="text-gray-400 leading-relaxed mb-8 prose prose-invert prose-sm"
+                  set:html={product.descriptionHtml}
+                />
+              )}
+
+              <AddToCart client:load variants={variants} />
+            </div>
+          </div>
+        </>
+      )}
+    </div>
+  </div>
+</BaseLayout>
