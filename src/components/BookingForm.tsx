@@ -21,23 +21,14 @@ export default function BookingForm() {
     const data = new FormData(form);
 
     try {
-      const res = await fetch('/api/booking', {
+      const res = await fetch('/', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: data.get('name'),
-          email: data.get('email'),
-          phone: data.get('phone'),
-          eventType: data.get('eventType'),
-          date: data.get('date'),
-          venue: data.get('venue'),
-          details: data.get('details'),
-        }),
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(data as any).toString(),
       });
 
       if (!res.ok) {
-        const body = await res.json().catch(() => ({}));
-        throw new Error(body.error || 'Something went wrong');
+        throw new Error('Something went wrong');
       }
 
       setStatus('success');
@@ -69,7 +60,9 @@ export default function BookingForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form name="booking" method="POST" data-netlify="true" onSubmit={handleSubmit} className="space-y-6">
+      <input type="hidden" name="form-name" value="booking" />
+
       {status === 'error' && (
         <div className="bg-red-900/30 border border-red-500/30 rounded-lg p-4 text-red-300 text-sm">
           {errorMessage}

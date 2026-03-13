@@ -75,4 +75,16 @@ const appearanceTypes = [
       <BookingForm client:load />
     </div>
   </section>
+
+  <!-- Hidden form for Netlify form detection (required for JS-rendered forms) -->
+  <form name="booking" data-netlify="true" hidden>
+    <input type="hidden" name="form-name" value="booking" />
+    <input name="name" />
+    <input name="email" />
+    <input name="phone" />
+    <input name="eventType" />
+    <input name="date" />
+    <input name="venue" />
+    <textarea name="details"></textarea>
+  </form>
 </BaseLayout>
